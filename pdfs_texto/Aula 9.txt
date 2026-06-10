@@ -1,0 +1,190 @@
+Arquivo: Aula 9.pdf
+
+--- PAGE 1 ---
+SQL - DML
+
+--- PAGE 2 ---
+Roteiro
+● DML
+● ACID
+● Select
+● Exercícios
+
+--- PAGE 3 ---
+DML
+● Propriedades ACID
+− Atomicidade
+● Garante que todas as modificações são realizadas ou nenhuma delas é 
+(tudo ou nada)
+− Consistência
+● Garante que as transações apenas modifiquem as tabelas de maneiras 
+predefinidas e previsíveis.
+− Isolamento
+● Garante que as transações são isoladas e não se interferem. Cada 
+solicitação é tratada como se estivesse ocorrendo independentemente. 
+Mesmo que em um ambiente concorrente.
+− Durabilidade
+● Garante que todas as alterações realizadas por transações que finalizaram 
+corretamente, sejam preservadas mesmo em caso de falha do sistema.
+
+--- PAGE 4 ---
+DML - Select
+● Consulta de dados
+− SELECT lista_atributos FROM tabelas [WHERE condicao]
+● Mapeamento para Álgebra Relacional
+
+--- PAGE 5 ---
+DML - Select
+● Exemplos
+
+--- PAGE 6 ---
+DML - Select
+● Facilidades para projeção de informações
+− Eliminação de duplicatas
+− Retorno de valores calculados
+● Uso de operadores aritméticos
+− Uso de funções de agregação
+● COUNT – contagem de atributos
+● MAX/MIN – valor máximo ou mínimo
+● SUM – somar valores de um atributo
+● AVG – média de valores de um atributo
+
+--- PAGE 7 ---
+DML - Select
+● Eliminação de duplicatas
+− SELECT [DISTINCT [ON]] lista_atributos […]
+● Exemplo
+− Buscar as especialidades de todos os médicos
+● SELECT DISTINCT especialidades FROM medicos
+
+--- PAGE 8 ---
+DML - Select
+● Valores calculados
+− SELECT atributo_calculado, (outro_calculado) AS calculo 
+[…]
+● Exemplo
+− Como ficariam os salários dos funcionários acrescidos de 10%?
+● SELECT cpf, (salario *1.1) AS valorNovo FROM 
+funcionarios
+
+--- PAGE 9 ---
+DML - Select
+● Contagem de repetições
+− SELECT COUNT(atributo) […]
+● Exemplo
+− Quantos médicos são ortopedistas?
+● SELECT COUNT(*) FROM medicos WHERE especialidade = 
+‘ortopedia’
+● SELECT COUNT(nroa) FROM medicos WHERE especialidade = 
+‘ortopedia’
+
+--- PAGE 10 ---
+DML - Select
+● Mínimo e Máximo
+− SELECT MIN(atributo), MAX(atributo) […]
+● Exemplo
+− Quais os valores máximos e mínimos de salário?
+● SELECT MAX(salario), MIN(salario) FROM funcionarios
+
+--- PAGE 11 ---
+DML - Select
+● Somatório
+− SELECT SUM(atributo) […]
+● Exemplo
+− Qual o valor total pago em salários aos funcionários?
+● SELECT SUM(salario) AS total FROM funcionarios
+
+--- PAGE 12 ---
+DML - Select
+● Média
+− SELECT AVG(atributo) […]
+● Exemplo
+− Qual a média salarial dos funcionários com mais de 50 anos?
+● SELECT AVG(salario) FROM funcionarios WHERE idade > 50
+
+--- PAGE 13 ---
+DML - Select
+● Agregação + DISTINCT
+− SELECT AVG(DISTINCT atributo) […]
+● Exemplo
+− Qual a média das faixas salariais dos funcionários com mais de 50 
+anos?
+● SELECT AVG(DISTINCT salario) FROM funcionarios WHERE 
+idade > 50
+
+--- PAGE 14 ---
+DML - Select
+● Facilidades para a seleção
+− Busca por padrões
+● cláusula [NOT] LIKE
+− Teste de existência de valores nulos
+● cláusula IS [NOT] NULL
+− Busca por intervalos de valores
+● cláusula [NOT] BETWEEN valor1 AND valor2
+− Teste de pertinência elemento-conjunto
+● cláusula [NOT] IN
+
+--- PAGE 15 ---
+DML - Select
+● Busca por padrões
+− Função textual
+− WHERE atributo LIKE ‘padrão’
+● %: casa com qualquer cadeia de caracteres
+● ‘_’: casa com um único caractere
+● [a-f]: casa com caracteres informados
+● Expressão regular POSIX
+● Exemplo
+− Buscar o CPF dos médicos cujo nome inicia com M
+● SELECT cpf FROM medicos WHERE nome LIKE ‘M%’
+
+--- PAGE 16 ---
+DML - Select
+● Teste de valores nulos
+− WHERE atributo IS [NOT] NULL
+● Exemplo
+− Buscar o CPF dos médicos que não atendem em um laboratório
+● SELECT cpf FROM medicos WHERE nroa IS NULL
+
+--- PAGE 17 ---
+DML - Select
+● Intervalo de valores
+− WHERE atributo BETWEEN val1 AND val2
+● Exemplo
+− Buscar os dados das consultas marcadas para o período da tarde
+● SELECT * FROM consultas WHERE hora BETWEEN ‘14:00’ AND 
+‘18:00’
+
+--- PAGE 18 ---
+DML - Select
+● Elemento em um conjunto
+− WHERE atributo IN (conjunto)
+● Exemplo
+− Buscar os médicos traumatologistas e cardiologistas
+● SELECT * FROM medicos WHERE especialidade IN 
+(‘cardiologia’, ‘traumatologia’)
+
+--- PAGE 19 ---
+DML - Select
+● Implementação da união da álgebra
+− Exige tabelas com mesmo número de atributos
+− consulta 1 UNION consulta 2 [UNION consulta3]
+● Exemplo
+− Buscar os CPFs de médicos e pacientes
+● SELECT cpf FROM medicos UNION SELECT cpf FROM pacientes
+
+--- PAGE 20 ---
+Exercícios
+1)  Buscar os dados dos ambulatórios que possuem capacidade superior à 30
+2)  Buscar os dados dos médicos com menos de 40 anos ou com especialidade traumatologia
+3)  Buscar os códigos dos médicos e os códigos dos pacientes, para todas as consultas marcadas no 
+período da tarde (a partir das 13h) após o dia 2018/10/15
+4)  Buscar o nome e a idade dos pacientes que não residem em Florianópolis
+5)  Buscar o nome e a idade (em meses) dos pacientes
+6)  Qual é o menor e o maior salário dos funcionários de Florianópolis
+7)  Qual a média de idade dos médicos e o total de ambulatórios atendidos por eles
+8)  Buscar o código, o nome e o salário líquido dos funcionários. O salário líquido é obtido pela 
+diferença entre o salário cadastrado, menos 20% deste mesmo salário
+9)  Buscar o nome e a especialidade dos médicos cuja segunda e a última letra de seus nomes seja a 
+letra “o”
+10) Buscar os CPFs, nomes e idades de todas as pessoas (médicos, pacientes ou funcionários) que 
+residem em Florianópolis

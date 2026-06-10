@@ -1,0 +1,613 @@
+Arquivo: Aula 7.pdf
+
+--- PAGE 1 ---
+Banco de Dados 
+Aula 7 – Álgebra Relacional
+Álvaro G. Pagliari
+alvaro.pagliari@unoesc.edu.br
+
+--- PAGE 2 ---
+●
+Modelo Relacional possui duas categorias de linguagens
+– Formais
+●
+Álgebra Relacional e Cálculo Relacional
+– Comerciais
+●
+SQL (baseada na linguagem formal)
+●
+Características Linguagens formais
+– Orientadas a conjunto
+– Linguagem de base*
+– Fechamento
+Álgebra Relacional
+
+--- PAGE 3 ---
+●
+Operadores para consulta e alteração de relações
+●
+Linguagem procedural
+– Define uma execução sequencial de operadores
+– A execução de cada operador produz uma relação
+●
+Classificação dos operadores
+– Fundamentais
+●
+Unários
+– Seleção, projeção, renomeação, atribuição*, renomeação*
+●
+binários
+–  Produto cartesiano, união, diferença, intersecção, junção 
+e divisão 
+Álgebra Relacional
+
+--- PAGE 4 ---
+● Retorna tuplas que satisfazem um predicado
+● Resultado
+– Subconjunto horizontal de uma relação
+● Notação (sigma)
+● Operadores de comparação:
+● Operadores Lógicos: 
+● Exemplo
+–
+Seleção
+
+--- PAGE 5 ---
+● Retorna um ou mais atributos de interesse
+● Resultado
+– Subconjunto vertical de uma relação
+● Notação (pi)
+● Eliminação automática de duplicatas
+● Exemplo
+Projeção
+
+--- PAGE 6 ---
+● Esquema relacional para os exemplos/exercícios
+● Ambulatorios(nroa, andar , capacidade);
+● Medicos(codm, CPF, nome, idade, cidade,especialidade, 
+nroa(Ambulatorios));
+● Pacientes(codp, CPF, nome, idade, cidade, doença)
+● Consultas(codm(Medicos), codp(Pacientes), data, hora)
+● Funcionários(codf, CPF, nome, idade, cidade, salário)
+Álgebra Relacional
+
+--- PAGE 7 ---
+● Retorna todas as combinações de 
+tuplas de duas relações R1 e R2
+● Grau do resultado
+– grau(R1) + grau(R2)
+● Cardinalidade do resultado
+– cardinalidade(R1) * 
+cardinalidade(R2)
+● Notação
+R1
+Produto Cartesiano
+x y z
+1 1 1
+2 2 2
+3 3 3
+w y
+1 1
+2 2
+x R1.y z w R2.y
+1 1 1 1 1
+1 1 1 2 2
+2 2 2 1 1
+2 2 2 2 2
+3 3 3 1 1
+3 3 3 2 2
+R2
+R1 X R2
+
+--- PAGE 8 ---
+● Produto Cartesiano
+– Notação
+Produto Cartesiano
+R1
+x y z
+1 1 1
+2 2 2
+3 3 3
+w y
+1 1
+2 2
+R2
+x R1.y z w R2.y
+1 1 1 1 1
+1 1 1 2 2
+2 2 2 1 1
+2 2 2 2 2
+3 3 3 1 1
+3 3 3 2 2
+R1 X R2
+
+--- PAGE 9 ---
+● Produto Cartesiano
+– Notação
+Produto Cartesiano
+R1
+x y z
+1 1 1
+2 2 2
+3 3 3
+w y
+1 1
+2 2
+R2
+x R1.y z w R2.y
+1 1 1 1 1
+1 1 1 2 2
+2 2 2 1 1
+2 2 2 2 2
+3 3 3 1 1
+3 3 3 2 2
+R1 X R2
+
+--- PAGE 10 ---
+● Produto Cartesiano
+– Notação
+Produto Cartesiano
+R1
+x y z
+1 1 1
+2 2 2
+3 3 3
+w y
+1 1
+2 2
+R2
+x R1.y z w R2.y
+1 1 1 1 1
+1 1 1 2 2
+2 2 2 1 1
+2 2 2 2 2
+3 3 3 1 1
+3 3 3 2 2
+R1 X R2
+
+--- PAGE 11 ---
+● Produto Cartesiano
+– Notação
+Produto Cartesiano
+R1
+x y z
+1 1 1
+2 2 2
+3 3 3
+w y
+1 1
+2 2
+R2
+x R1.y z w R2.y
+1 1 1 1 1
+1 1 1 2 2
+2 2 2 1 1
+2 2 2 2 2
+3 3 3 1 1
+3 3 3 2 2
+R1 X R2
+
+--- PAGE 12 ---
+● Produto Cartesiano
+– Notação
+Produto Cartesiano
+R1
+x y z
+1 1 1
+2 2 2
+3 3 3
+w y
+1 1
+2 2
+R2
+x R1.y z w R2.y
+1 1 1 1 1
+1 1 1 2 2
+2 2 2 1 1
+2 2 2 2 2
+3 3 3 1 1
+3 3 3 2 2
+R1 X R2
+
+--- PAGE 13 ---
+Atribuição
+● Armazena o resultado de uma expressão algébrica em uma variável de 
+relação
+– Permite o processamento de uma consulta por etapas
+● Notação
+– nomeVariável ← expressãoAlgébrica
+● Exemplo (exercício 1 de Produto Cartesiano)
+–
+–
+–  
+R 1← π codm ,data (Consultas )
+R 2 ← π codm ,nome ( Medicos )
+Resposta← π nome, data ( σ R1. codm=R 2. codm( R 1 X R 2))
+
+--- PAGE 14 ---
+● Altera o nome de uma relação e/ou dos seus atributos
+● Notação (rho)
+Renomeação
+R
+x y z
+1 1 1
+2 1 3
+R.x R.y R.z R1.x R1.y R1.z
+1 1 1 1 1 1
+1 1 1 2 1 3
+2 1 3 1 1 1
+2 1 3 2 1 3
+R X ρR1(R) ρ(a, b, c) ( R)
+a b c
+1 1 1
+2 1 3
+ρ (nomeAtributo , ... , nomeAtributoN ) e / ou nomeRelacao(relação)
+
+--- PAGE 15 ---
+Álgebra Relacional - Otimização
+● Antecipação de seleções
+– filtragens horizontais o mais cedo possível
+● Definição de projeções
+– filtragens verticais o mais cedo possível
+– desde que não prejudiquem operações algébricas futuras que necessitem 
+de atributos eliminados
+● Identificação de subexpressões comuns
+– processá-la uma única vez, mantendo-a em uma variável de relação
+– esta variável de relação é usada várias vezes no processamento da consulta
+
+--- PAGE 16 ---
+Álgebra Relacional
+● Buscar o nome dos médicos que estão internados como pacientes, sofrendo de 
+hepatite 
+R 1Medicos .nome (σ Pacientes .CPF =Medicos .CPF ᐱdoenca=' hepatite ' ( Pacientes X Médicos ))
+πnome ( σ Pacientes .CPF =Medicos .CPF ( πCPF (σ doença=' hepatite ' ( Pacientes))) X ( π CPF , nome( Médicos)))
+Antecipando seleções e definindo projeções
+
+--- PAGE 17 ---
+Álgebra Relacional
+● Buscar o número dos ambulatórios onde pelo menos dois médicos de 
+Florianópolis dão atendimento
+ρ
+
+--- PAGE 18 ---
+● Retorna a união das tuplas de duas relações R1 e R2
+● Eliminação automática de duplicatas
+● Notação
+Exemplo
+Relação1    R⋃ elação2
+R 1 R2
+x y z
+1 1 1
+1 2 1
+1 2 2
+1 2 3
+2 2 3
+3 1
+x y z x y z
+1 1 1 1 1 1
+1 2 2 1 2 1
+2 2 3 1 2 3
+3 1 1
+1
+União
+⋃
+
+--- PAGE 19 ---
+União
+● Operam somente sobre duas relações R1 e R2, ditas compatíveis
+– grau(R1) = grau(R2)
+– Para i de 1 até grau(R1):
+● domínio(atributo ai de R1) = domínio(atributo ai de R2)
+● Grau do resultado
+– grau(R1) (ou grau(R2))
+● Nomes dos atributos do resultado
+– Nomes dos atributos da primeira relação (R1 – relação à esquerda)
+
+--- PAGE 20 ---
+● Retorna as tuplas presentes em R1 e ausentes em R2
+● Notação
+● Exemplo
+relação1 - relação2 
+R 1 R2 R1 - R2
+x   y    z x    y    z x   y   z
+1   1   1 1    1   1 1    2   2
+1   2   2 1    2   1 2    2   3
+2   2   3 3    1   1
+3   1   1
+Diferença
+
+--- PAGE 21 ---
+● Retorna as tuplas presentes em R1 e ausentes em R2
+● Notação
+● Exemplo
+R 1 R2 R1 - R2
+x   y    z x    y    z x   y   z
+1   1   1 1    1   1 1    2   2
+1   2   2 1    2   1 2    2   3
+2   2   3 3    1   1
+3   1   1
+Diferença
+relação1 - relação2
+
+--- PAGE 22 ---
+● Retorna as tuplas comuns a R1 e R2
+● Notação
+● Exemplo
+R1 R2 R1 ⋂ R 2
+x y z x y z x y z
+1 1 1 1 1 1 1 1 1
+1 2 2 1 2 1 3 1 1
+2 2 3 3 1 1
+3 1 1
+Intersecção
+relação1  relação2 ⋂
+
+--- PAGE 23 ---
+● Retorna as tuplas comuns a R1 e R2
+● Notação
+● Exemplo
+R1 R2 R1 ⋂ R 2
+x y z x y z x y z
+1 1 1 1 1 1 1 1 1
+1 2 2 1 2 1 3 1 1
+2 2 3 3 1 1
+3 1 1
+Intersecção
+relação1  relação2 ⋂
+
+--- PAGE 24 ---
+● Retorna a combinação de tuplas de duas relações  R1 e R2 que 
+satisfazem um predicado
+● Notação
+● Exemplo
+relação1 ⋈ relação2
+Junção (join)
+
+--- PAGE 25 ---
+● Retorna a combinação de tuplas de duas relações  R1 e R2 que 
+satisfazem um predicado
+● Notação
+● Exemplo
+R1 R2 R1 X  R 2 = R1.y > R2.y
+x y z w   y
+1 1 1 1 1
+2 2 2 2 2
+3 3 3
+Junção (join)
+relação1 ⋈ relação2
+
+--- PAGE 26 ---
+● Retorna a combinação de tuplas de duas relações  R1 e R2 que 
+satisfazem um predicado
+● Notação
+● Exemplo
+R1 R2
+x y z w   y
+1 1 1 1 1
+Junção (join)
+2 2 2 2 2
+3 3 3
+R1 X R 2 = R1.y > R2.y
+x R 1.y z w R 2.y
+2 2 2 1 1
+3 3 3 1 1
+3 3 3 2 2
+relação1 ⋈ relação2
+
+--- PAGE 27 ---
+● Retorna a combinação de tuplas de duas relações  R1 e R2 que 
+satisfazem um predicado
+● Notação
+● Exemplo
+R1 R2
+x y z w   y
+1 1 1 1 1
+Junção (join)
+2 2 2 2 2
+3 3 3
+R1 X R 2 = R1.y > R2.y
+x R 1.y z w R 2.y
+2 2 2 1 1
+3 3 3 1 1
+3 3 3 2 2
+relação1 ⋈ relação2
+
+--- PAGE 28 ---
+● Retorna a combinação de tuplas de duas relações  R1 e R2 que 
+satisfazem um predicado
+● Notação
+● Exemplo
+R1 R2
+x y z w   y
+1 1 1 1 1
+Junção (join)
+2 2 2 2 2
+3 3 3
+R1 X R 2 = R1.y > R2.y
+x R 1.y z w R 2.y
+2 2 2 1 1
+3 3 3 1 1
+3 3 3 2 2
+relação1 ⋈ relação2
+
+--- PAGE 29 ---
+● Retorna a combinação de tuplas de duas relações  R1 e R2 que 
+satisfazem um predicado
+● Notação
+● Exemplo
+1
+R1 R2
+x y z w   y
+1 1 1 1
+Junção (join)
+2 2 2 2 2
+3 3 3
+R1 X R 2 = R1.y > R2.y
+x R 1.y z w R 2.y
+2 2 2 1 1
+3 3 3 1 1
+3 3 3 2 2
+relação1 ⋈ relação2
+
+--- PAGE 30 ---
+● Retorna a combinação de tuplas de duas relações  R1 e R2 que 
+satisfazem um predicado
+● Notação
+● Exemplo
+1 1 1
+R2
+w   y
+1 1
+Junção (join)
+2 2
+R1 X R 2 = R1.y > R2.y
+x R 1.y z w R 2.y
+2 2 2 1 1
+3 3 3 1 1
+3 3 3 2 2
+R1
+x y z
+2 2 2
+3 3 3
+relação1 ⋈ relação2
+
+--- PAGE 31 ---
+● Junção na qual é uma igualdade predefinida entre todos os atributos de 
+mesmo nome presente em duas relações R1 e R2 (atributos de junção). 
+Estes atributos só aparecem uma vez no resultado.
+● Notação
+● Derivação
+R 1 R 2 = πA1, ..., An, B1, ..., Bm, C1, ..., Cx (R 1 X R 2)
+R1.C1 = R2.C1 ^ ... ^ R1.Cx = R2.Cx
+atributos de junção
+Junção Natural (natural join)
+relação1 ⋈ relação2
+
+--- PAGE 32 ---
+● Junção na qual é uma igualdade predefinida entre todos os atributos de 
+mesmo nome presente em duas relações R1 e R2 (atributos de junção). 
+Estes atributos só aparecem uma vez no resultado.
+● Notação
+Junção Natural (natural join)
+relação1 ⋈ relação2
+
+--- PAGE 33 ---
+R1 R2 R 1 R2
+x    y z w    y x    y z    w
+1    1 1 1    1 1    1 1    1
+1    1 2 2    2 1    1 2    1
+2    2 3 2    2 3    2
+R1 R2 R 1 R2
+x y z x y w x y z    w
+1 1 1 1  1 3 1 1 1    3
+1 1 2 2 2 2 1 1 2    3
+2 2 3 2 2 3    2
+Junção Natural (natural join)
+● Exemplo
+
+--- PAGE 34 ---
+R1 R2 R 1           R2
+x    y    z w    t x    y    z    w t
+1    1    1 1    1 1    1    1    1    1
+1    1   2 2    2 1    1    1    2    2
+1    1    2    1 1
+1    1    2    2    2
+Junção Natural (natural join)
+● Exemplo
+
+--- PAGE 35 ---
+relação1 relação2
+Junções Externas (outer joins)
+● Junção na qual as tuplas, de uma ou de ambas as relações, que não são 
+combinadas são mesmo assim preservadas no resultado
+● Três tipos (exemplos com junção natural)
+– Junção externa à esquerda (left [outer] join)
+● Tuplas da relação à esquerda são preservadas
+● notação
+
+--- PAGE 36 ---
+relação1 relação2
+Junções Externas (outer joins)
+● Junção na qual as tuplas, de uma ou de ambas as relações, que não são 
+combinadas são mesmo assim preservadas no resultado
+● Três tipos (exemplos com junção natural)
+– Junção externa à direita (right [outer] join)
+● Tuplas da relação à direita são preservadas
+● notação
+
+--- PAGE 37 ---
+relação1 relação2
+Junções Externas (outer joins)
+● Junção na qual as tuplas, de uma ou de ambas as relações, que não são 
+combinadas são mesmo assim preservadas no resultado
+● Três tipos (exemplos com junção natural)
+– Junção externa completa (full [outer] join)
+● Tuplas de ambas as relações são preservadas
+● notação
+
+--- PAGE 38 ---
+● Exemplos
+R1 R2 R1 R2
+x y    z x a b x    y    z    a    b
+1 1    1 1 1 1 1    1    1    1   1
+2 1    2 2 1 2 2    1    2    1   2
+3 3    3 4 4   4 3    3    3
+5 5    5 5    5    5
+R1 R2 R 1 R2
+x    y    z    a    b x    y    z    a    b
+1    1    1    1   1 1    1    1    1     1
+2    1    2    1   2 2    1    2    1     2
+4    4    4 3    3    3
+5    5    5
+4    4    4
+Junções Externas (outer joins)
+
+--- PAGE 39 ---
+1) buscar o nome dos médicos que têm consulta marcada e as datas das suas 
+consultas
+2) buscar o número e a capacidade dos ambulatórios do quinto andar e o nome dos 
+médicos ortopedistas que atendem neles
+3) buscar , para as consultas marcadas para o período da manhã (7hs-12hs), o nome do 
+médico, o nome do paciente e a data da consulta
+4) buscar o nome e o salário dos funcionários de Florianópolis e Palhoça. Estes 
+funcionários devem estar internados como pacientes e possuir consultas marcadas 
+com psiquiatras
+5) buscar o número dos ambulatórios com capacidade superior à capacidade do 
+ambulatório de número 100
+6) buscar o nome e o CPF dos funcionários que recebem salários iguais ou inferiores ao 
+salário do funcionário com CPF 1001
+7) buscar pares de nomes de médicos diferentes que têm consultas marcadas nas 
+mesmas datas
+Exercícios – Parte 1 – Utilizando Produto Cartesiano
+
+--- PAGE 40 ---
+Exercícios – Parte 2 – Usando União, Diferença e Intersecção
+1) Buscar o nome e CPF dos médicos e dos pacientes cadastrados no hospital
+2) Buscar o nome, CPF e idade dos médicos, pacientes e funcionários que 
+residem em Florianópolis
+3) Buscar o nome e CPF dos funcionários que recebem salários abaixo de R$ 
+500,00 e não estão internados como pacientes
+4) Buscar o número dos ambulatórios onde nenhum médico dá atendimento
+5) Buscar o nome e CPF dos funcionários de Florianópolis que estão 
+internados como pacientes
+6) Buscar o nome e CPF dos médicos pediatras que não atendem nos 
+laboratórios 101 e 102, e estão internados como pacientes sofrendo de 
+gastrite
+
+--- PAGE 41 ---
+1) buscar o número e a capacidade dos ambulatórios do quinto andar e o nome dos 
+médicos que atendem neles
+2) buscar o nome e o salário dos funcionários de Florianópolis e Palhoça. Estes 
+funcionários devem estar internados como pacientes e ter consultas marcadano dia 
+20/8/2016
+3) buscar o número e o andar dos ambulatórios onde nenhum médico dá atendimento
+4) buscar o número dos ambulatórios que estão no mesmo andar do ambulatório 101 
+e possuem capacidade superior à capacidade dele
+5) buscar o código dos pacientes que têm consultas marcadas com todos os médicos
+6) buscar o nome e o CPF dos médicos que têm consultas marcadas com todos os 
+pacientes
+7) buscar o nome e o CPF dos pacientes que têm consultas marcadas com todos os 
+médicos ortopedistas que atendem nos ambulatórios do primeiro andar
+8) todos os médicos ortopedistas dão atendimento no mesmo ambulatório? Em caso 
+afirmativo, buscar o número e o andar deste ambulatório
+Exercícios – Parte 3 – Usando Join

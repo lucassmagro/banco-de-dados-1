@@ -1,0 +1,127 @@
+Arquivo: Aula 16.pdf
+
+--- PAGE 1 ---
+Seriais e Triggers
+Álvaro G. Pagliari
+alvaro.pagliari@unoesc.edu.br
+
+--- PAGE 2 ---
+● Seriais
+● Triggers
+● Exercícios :)
+Roteiro
+
+--- PAGE 3 ---
+●
+Em uma tabela é importante e interessante que os códigos para cada 
+tupla sejam gerados automaticamente 
+●
+Alguns BDs usam colunas do tipo autoincrement
+●
+Postgres é mais chato
+CREATE SEQUENCE nome_seq START 1;
+ALTER TABLE tabela ALTER COLUMN id SET DEFAULT 
+NEXTVAL(‘nome_seq’);
+– Tipo SERIAL
+Seriais
+
+--- PAGE 4 ---
+Triggers (Gatilhos)
+
+--- PAGE 5 ---
+●
+Gatilhos(triggers) são objetos acessórios a tabelas e visões que 
+funcionam como “ouvidores” (listeners) de eventos
+●
+O objetivo da criação de triggers é observar ocorrências de 
+inserção, atualização e exclusão de registros ou execução de 
+comandos SQL sobre os objetos aos quais os gatilhos estão 
+vinculados, ANTES ou DEPOIS da sua ocorrência.
+●
+É comum que sejam implementados para executar operações 
+que são derivadas, diretamente, de outras operações
+●
+Exemplo: gravar logs de manutenção de dados
+Triggers
+
+--- PAGE 6 ---
+Triggers
+
+--- PAGE 7 ---
+●
+BEFORE, AFTER, INSTEAD OF
+– Permite especificar se a ação do gatilho ocorrerá ANTES do 
+evento que o disparou, DEPOIS do evento ou NO LUGAR do 
+evento
+●
+Event
+– INSERT, UPDATE, DELETE, TRUNCATE
+●
+[ FOR [ EACH ] { ROW | STATEMENT } ]
+– A ação do gatilho é repetida para cada registro atingido pelo 
+evento, ou executada apenas uma vez para atender ao evento
+Triggers
+
+--- PAGE 8 ---
+●
+[ WHEN ( condition ) ]
+– Permite estabelecer uma condição para a execução da ação 
+do trigger
+●
+exemplo: executar apenas se o registro do funcionário 
+indicar que o mesmo está ativo no cadastro
+●
+EXECUTE PROCEDURE function_name ( arguments )
+– Define qual função implementa a ação do trigger
+– Funções que atendem gatilhos são conhecidas como trigger 
+functions
+– São diferentes de funções comuns por retornarem trigger
+Triggers
+
+--- PAGE 9 ---
+● Exemplo
+Triggers
+
+--- PAGE 10 ---
+● Exemplo
+– Médicos com mais de 60 anos não podem trabalhar 
+em andares diferentes do 1.
+Triggers
+
+--- PAGE 11 ---
+Triggers
+
+--- PAGE 12 ---
+Triggers
+
+--- PAGE 13 ---
+Triggers
+
+--- PAGE 14 ---
+● Como fazer debug?
+– raise notice ‘O valor é %’, NEW.valor
+● Existem outras variáveis além do TG_OP?
+– Sim, a lista está disponível em https://www.postgres
+ql.org/docs/current/plpgsql-trigger .html
+● Posso mudar os valores de NEW e OLD quando a trigger 
+é AFTER?
+– Não pode! 
+Triggers
+
+--- PAGE 15 ---
+1) Criar uma trigger que verifique e grave todos os nomes de novos pacientes em MAIÚSCULO;
+2)  Faça uma adaptação do código exibido nos slides 6 e 7 para adequá-lo ao seu banco de dados, 
+como segue:
+1) crie uma nova tabela chamada “log”, com os seguintes atributos: “identificador” (serial), 
+“tabela” (varchar com 50 posições), “operacao” (varchar com 10 posições), “dadosNovos” 
+(texto) e “dadosAntigos” (texto);
+2)  as tabelas a serem monitoradas via trigger são: “Ambulatorios”, “Medicos” e “Pacientes”;
+3)  quando ocorrerem atualizações (UPDATEs) nos registros dessas tabelas, o SGBD deverá 
+inserir registros na tabela “log”, preenchendo seus atributos com o nome da tabela que 
+está sendo modificada, a operação que está sendo executada (“UPDATE”) e o conteúdo 
+anterior/atual dos registros que estão sendo modificados;
+4)  quando ocorrerem exclusões (DELETEs) de registros dessas tabelas, o SGBD deverá inserir 
+registros na tabela “log”, preenchendo seus atributos com o nome da tabela cujos registros 
+estão sendo excluídos, a operação que está sendo executada (“DELETE”) e o conteúdo dos 
+registros que estão sendo excluídos.
+Exercícios

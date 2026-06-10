@@ -1,0 +1,252 @@
+Arquivo: Aula 14.pdf
+
+--- PAGE 1 ---
+Aula Views + Índices
+Álvaro G. Pagliari
+alvaro.pagliari@unoesc.edu.br
+
+--- PAGE 2 ---
+● Visões
+– Visão Geral
+– Views Atualizáveis
+– Views Materializadas
+● Índices
+● Exercícios :)
+Roteiro
+
+--- PAGE 3 ---
+● Visão
+– É um conjunto resultado de uma consulta
+– Tabela derivada a partir das tabelas do BD
+– Pode ser vista coo uma tabela virtual, o usuário manipula como se 
+fosse uma tabela normal
+● Visões fazem parte do esquema externo de um Banco de Dados
+● CREATE VIEW nome AS
+SELECT atributos FROM tabela [JOIN tabela] [WHERE 
+filtros]
+Visões
+
+--- PAGE 4 ---
+● Exemplo
+– O setor de câncer do hospital lida apenas com dados de pacientes 
+que têm essa doença
+● Definição
+Visões
+
+--- PAGE 5 ---
+● A especificação de uma visão é a consulta que a define
+● Definições recursivas são permitidas
+● Dependências Visão x Tabela/Visão
+  
+Visões
+
+--- PAGE 6 ---
+●
+Cada visão criada é uma abstração sobre um conjunto de tabelas
+●
+Exemplo
+●
+Toda visão pode ser consultada
+●
+Nem toda visão pode ser atualizada
+Visões
+
+--- PAGE 7 ---
+● Caso 1
+● Qual das visões poderá ser atualizada?
+– Chaves primárias
+● Visões atualizáveis devem preservar as chaves da tabela base
+Visões - Atualização
+
+--- PAGE 8 ---
+● Caso 2
+● Como atualizar o atributo total?
+● Uma visão atualizável apenas deve conter atributos mapeados 
+diretamente para a tabela base
+Visões - Atualização
+
+--- PAGE 9 ---
+●
+Caso 3
+Atualizar consultas do médico 13 no dia 29/10 para o médico 15
+●
+Violação de chave primária (inclusão em várias tabelas?)
+Visões - Atualização
+
+--- PAGE 10 ---
+Visões - Atualização
+Visões atualizáveis usualmente só são derivadas de 
+uma única tabela
+
+--- PAGE 11 ---
+● Atributos definidos no predicado das consultas (WHERE) não são 
+atributos da visão
+● Tuplas inseridas nesta visão podem não ser vistas por ela
+– Para solucionar poderia ser criado gatilho de inclusão para a doença 
+câncer
+Visões - Atualização
+
+--- PAGE 12 ---
+● Atributos da visão que participam do predicado
+● WITH CHECK OPTION
+– A visão só inclui valores que são válidos para o predicado da 
+consulta
+  
+Visões - Atualização
+
+--- PAGE 13 ---
+Visões Materializadas
+
+--- PAGE 14 ---
+● Vantagens do uso de visões
+– Independência lógica dos dados
+– Acesso eficiente
+● Plano de acesso otimizado
+– Segurança de acesso
+● Cada usuário apenas tem acesso a porção dos dados na qual 
+possui permissão
+– Visões materializadas precisam ser atualizadas
+● refresh materialized view NOME_VISAO
+Visões Materializadas
+
+--- PAGE 15 ---
+Índices
+
+--- PAGE 16 ---
+● São estruturas de dados otimizadas que permitem a 
+localização de um determinado dado/tupla mais 
+rapidamente
+● A busca em uma tabela se dá de maneira linear O(n), 
+índices devem implementar algoritmos que tornem 
+essa busca mais rápida (< O(n))
+Índices
+
+--- PAGE 17 ---
+● Busque as informações do médico com codm = 5;
+Índices
+
+--- PAGE 18 ---
+● Busque as informações do médico com codm = 5;
+Índices
+
+--- PAGE 19 ---
+● Busque as informações do médico com codm = 5;
+Índices
+
+--- PAGE 20 ---
+● Busque as informações do médico com codm = 5;
+Índices
+
+--- PAGE 21 ---
+● Busque as informações do médico com codm = 5;
+Índices
+
+--- PAGE 22 ---
+● Busque as informações do médico com codm = 5;
+Índices
+
+--- PAGE 23 ---
+● Busque as informações do médico com codm = 5;
+– Com índice
+3
+34 531 2
+Índices
+
+--- PAGE 24 ---
+● Busque as informações do médico com codm = 5;
+– Com índice
+3
+34 531 2
+Índices
+
+--- PAGE 25 ---
+● Busque as informações do médico com código = 5;
+– Com índice
+3
+34 531 2
+Índices
+
+--- PAGE 26 ---
+● Busque as informações do médico com codm = 5;
+– Com índice
+3
+34 531 2
+Índices
+
+--- PAGE 27 ---
+● Busque as informações do médico com codm = 5;
+– Com índice
+3
+34 531 2
+Índices
+
+--- PAGE 28 ---
+● Busque as informações do médico com código = 5;
+– Com índice
+● Imagine um cenário maior
+Índices
+
+--- PAGE 29 ---
+●
+Tipos de índice
+– Simples
+●
+Envolve apenas uma coluna
+– Composto
+●
+Envolve várias colunas
+●
+*Algoritmos (Depende de cada SGBD)
+– B-Tree
+– R-Tree
+– Gist
+– Hash
+Índices
+
+--- PAGE 30 ---
+● Índice BTree
+Índices
+
+--- PAGE 31 ---
+● Índice Hash
+Índices
+
+--- PAGE 32 ---
+●
+Como criar um índice
+CREATE [UNIQUE] INDEX nome ON tabela (atributo1, 
+atributon)
+●
+Ex
+CREATE INDEX esp_med ON medicos (especialidade)
+●
+Excluir índice
+DROP INDEX nome;
+Índices
+
+--- PAGE 33 ---
+Crie Visões para as seguintes questões
+1) Buscar o nome e a idade dos pacientes que não residem em Florianópolis
+2)  Qual a média de idade dos médicos e o total de ambulatórios atendidos por eles
+3) Média de idade dos médicos por especialidade
+4) Buscar os CPFs, nomes e idades de todas as pessoas (médicos, pacientes ou funcionários) que 
+residem em Florianópolis) 
+5) Nome e CPF dos médicos que também são pacientes do hospital
+6) Número e andar dos ambulatórios onde nenhum médico dá atendimento
+7) Nome e a idade do médico mais velho
+8) Buscar o nome e a especialidade dos médicos que atendem nos ambulatórios do primeiro 
+andar
+9) Buscar o código e o nome dos pacientes com consulta marcada para horários após às 14 horas
+10)Buscar o CPF e o nome de todos os médicos e, para aqueles médicos com consultas marcadas, 
+exibir os CPFs e nomes dos seus pacientes e as datas das consultas
+11)Buscar o nome e o CPF dos médicos que têm consultas marcadas com todos 
+os pacientes
+Exercícios
+
+--- PAGE 34 ---
+Crie índices
+1) Crie um índice composto que combine as colunas codm e codp da tabela consulta
+2) Crie um índice para a especialidade do médico
+3) Crie um índice que de mais desempenho para consultas que buscam os pacientes 
+pela sua doença
+Exercícios

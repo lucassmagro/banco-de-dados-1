@@ -1,0 +1,133 @@
+Arquivo: Aula 15.pdf
+
+--- PAGE 1 ---
+Restrições de Integridade e Stored Procedures
+Álvaro G. Pagliari
+alvaro.pagliari@unoesc.edu.br
+
+--- PAGE 2 ---
+● Restrições de Integridade
+● Funções
+● Exercícios :)
+Roteiro
+
+--- PAGE 3 ---
+Restrições de Integridade (RIs)
+
+--- PAGE 4 ---
+●
+Restrições (constraints) são construções previstas no SQL 
+utilizados para definir um nível de controle mais apurado 
+sobre os dados e seu domínio
+●
+Geralmente, restrições podem ser definidas de duas 
+maneiras
+– Através de DDL na construção de tabelas
+●
+Unique, not null, check
+– Adicionados posteriormente sob demanda
+●
+constraint
+Restrições
+
+--- PAGE 5 ---
+● Checagem (check)
+– Permitem a especificação de valores válidos ou não 
+para o campo
+– Podem referenciar outros campos
+– Avaliam uma expressão boleana
+Restrições
+
+--- PAGE 6 ---
+● Exemplo
+Restrições
+
+--- PAGE 7 ---
+● Exemplo
+Restrições
+
+--- PAGE 8 ---
+● Exemplo
+Restrições
+
+--- PAGE 9 ---
+● Exemplo
+Restrições
+
+--- PAGE 10 ---
+● Exemplo
+Restrições
+
+--- PAGE 11 ---
+● Exemplo (Inclusão posterior)
+ALTER TABLE departamentos  ADD CONSTRAINT 
+nome_departamento CHECK (nome IN (‘Vendas’, 
+‘Pessoal’, ‘Financas’))
+Restrições
+
+--- PAGE 12 ---
+Funções
+
+--- PAGE 13 ---
+● Programação estruturada
+– Procedimentos
+– Funções
+● Em BD
+– Geralmente procedures contém rollback e funções não
+● Postgres
+– Tudo a mesma coisa
+Funções
+
+--- PAGE 14 ---
+CREATE [ OR REPLACE ] FUNCTION 
+name( [  [ argname] argtype] )
+[ RETURNS tipo | [TABLE (cols)]  ]
+AS $$
+[DECLARE var tipo;]
+BEGIN
+   operações
+END; 
+$$ LANGUAGE plpgsql;
+Funções
+
+--- PAGE 15 ---
+Funções
+
+--- PAGE 16 ---
+Funções
+
+--- PAGE 17 ---
+Funções
+
+--- PAGE 18 ---
+Funções
+
+--- PAGE 19 ---
+Funções
+
+--- PAGE 20 ---
+1) Para as seguintes tabelas, crie as seguintes restrições de checagem:
+a) “Ambulatorios”: andar >= 0, capacidade >= 1
+b) “Medicos”: idade >= 16
+c) “Pacientes”: idade >= 0
+d) “Funcionarios”: idade >= 0, salario>= 0
+2) Para as tabelas “Medicos”, “Pacientes” e “Funcionarios”, crie restrições 
+de unicidade para o campo “CPF” (se não existirem)
+3) Crie as funções apresentadas nos slides de 15 a 19 em sua instância de 
+banco de dados. Quando necessário, faça adaptações no código para 
+utilizar as suas tabelas no lugar das tabelas utilizadas nos slides.
+Exercícios (parte 1)
+
+--- PAGE 21 ---
+4) Uma prática utilizada durante o desenvolvimento de aplicações que interagem com 
+bancos de dados é a de definir procedimentos ou funções responsáveis pela 
+inclusão, alteração e exclusão de registros. Para as tabelas de Pacientes e Médicos, 
+crie funções que atendam a essas operações, respeitando as seguintes regras:
+a) no caso de inclusões, a função deverá retornar a chave primária do novo 
+registro como resultado;
+b) no caso de alterações, a chave primária cujo registro deverá ser modificado 
+deverá ser passada como parâmetro (juntamente com os dados a serem 
+modificados no registro). O retorno dessa função deverá ser nulo;
+c) no caso de exclusões, a chave primária cujo registro deverá ser removido deverá 
+ser passada como parâmetro. O retorno dessa função deverá ser nulo.
+Exercícios (parte 2)

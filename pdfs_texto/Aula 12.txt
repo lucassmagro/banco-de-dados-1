@@ -1,0 +1,154 @@
+Arquivo: Aula 12.pdf
+
+--- PAGE 1 ---
+SQL 
+Exists e Group By
+Álvaro G. Pagliari
+alvaro.pagliari@unoesc.edu.br
+
+--- PAGE 2 ---
+DML - Exists
+● Subconsulta com resultado booleano
+– Verifica se o predicado é verdadeiro ou falso
+– Para cada tupla da consulta externa a subconsulta é executada
+SELECT listra_atributos FROM tabela1 [, …]
+WHERE [NOT] EXISTS (subconsulta)
+
+--- PAGE 3 ---
+DML - Exists
+
+--- PAGE 4 ---
+DML - Exists
+
+--- PAGE 5 ---
+DML - Exists
+
+--- PAGE 6 ---
+DML - Exists
+
+--- PAGE 7 ---
+DML - Exists
+
+--- PAGE 8 ---
+DML - Exists
+
+--- PAGE 9 ---
+DML - Exists
+
+--- PAGE 10 ---
+DML - Exists
+
+--- PAGE 11 ---
+DML - Exists
+
+--- PAGE 12 ---
+DML - Exists
+
+--- PAGE 13 ---
+DML - Exists
+
+--- PAGE 14 ---
+DML - Exists
+
+--- PAGE 15 ---
+DML - Exists
+
+--- PAGE 16 ---
+DML - Exists
+
+--- PAGE 17 ---
+DML - Exists
+
+--- PAGE 18 ---
+DML - Exists
+
+--- PAGE 19 ---
+DML - Exists
+
+--- PAGE 20 ---
+DML - Exists
+
+--- PAGE 21 ---
+DML - Exists
+
+--- PAGE 22 ---
+DML - Exists
+
+--- PAGE 23 ---
+DML - Exists
+
+--- PAGE 24 ---
+Esse comando é o mesmo que pedir todos os 
+pacientes tal que não exista um médico que 
+não consultou ele
+DML - Exists
+
+--- PAGE 25 ---
+DML – Order By
+● Cláusula ORDER BY
+– SELECT lista_atributos FROM lista_tabelas
+[WHERE condicao] ORDER BY atributo1 [ASC | DESC]
+[, atributo2 [ASC | DESC]]
+– Exemplo
+● SELECT * FROM Pacientes ORDER BY nome
+● SELECT * FROM Pacientes ORDER BY nome ASC
+● SELECT * FROM Pacientes ORDER BY nome DESC
+
+--- PAGE 26 ---
+DML – Limit e Offset
+● Cláusula LIMIT e OFFSET
+– SELECT lista_atributos FROM lista_tabelas
+[WHERE condicao] LIMIT valor [OFFSET valor]
+– Exemplo
+● SELECT * FROM Pacientes ORDER BY nome LIMIT 5
+● SELECT * FROM Pacientes ORDER BY nome OFFSET 1
+
+--- PAGE 27 ---
+DML – Group By e Having
+● Cláusula GROUP BY
+– SELECT lista_atributos FROM lista_tabelas
+[WHERE condicao]
+GROUP BY lista_atributos [HAVING condicoes]
+– Define grupos para combinações de valores dos atributos definidos em 
+lista_atributos
+– Um grupo mantém os atributos da tabela que não estão em lista_atributos
+– Apenas atributos definidos em lista_atributos podem aparecer no 
+resultado da consulta
+– Geralmente o resultado da consulta possui uma função de agregação
+– HAVING condição para formação de grupos:
+● Só utilizado com funções de grupo e agregação
+● Só pode ser utilizada em conjunto com o GROUP BY
+
+--- PAGE 28 ---
+DML – Group By e Having
+● Exemplo
+– SELECT especialidade, COUNT(*) FROM medicos
+GROUP BY especialidade HAVING COUNT(*) > 1
+
+--- PAGE 29 ---
+Exercícios
+● Responda utilizando subconsultas com EXISTS
+1) Buscar o nome e o CPF dos médicos que também são pacientes 
+do hospital
+2) Buscar o nome e o CPF dos médicos ortopedistas e a data das 
+suas consultas, para os médicos que têm consulta com a 
+paciente Ana
+3) Buscar o nome e o CPF dos médicos que têm consultas
+4) Buscar o nome e o CPF dos médicos ortopedistas que têm 
+consultas marcadas com todos os pacientes de Florianópolis
+
+--- PAGE 30 ---
+Exercícios
+●
+Responda utilizando ORDER BY e GROUP BY
+1) Os dados de todos os funcionários ordenados pelo saslário 
+(decrescente) e pela idade (crescente). Buscar apenas os três 
+primeiros funcionários nesta ordem
+2) O nome dos médicos e o número e andar do ambulatório onde 
+eles atendem, ordenado pelo número do ambulatório
+3) Datas e o total de consultas em cada data, para horários após as 
+12 horas
+4) Andares dos ambulatórios e a capacidade total por andar
+5) Andares dos ambulatórios cuja média de capacidade no andar seja 
+>= 40
+6) Nome dos médicos que possuem mais de uma consulta marcada

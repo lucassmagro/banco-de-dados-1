@@ -1,0 +1,140 @@
+Arquivo: Aula 11.pdf
+
+--- PAGE 1 ---
+SQL 
+          Consultas Aninhadas
+Álvaro G. Pagliari
+alvaro.pagliari@unoesc.edu.br
+
+--- PAGE 2 ---
+Roteiro
+● Consultas Aninhadas
+– In
+– Any
+– All
+– Subconsultas
+– Otimizações
+
+--- PAGE 3 ---
+DML - Select
+●
+Consultas aninhadas (subconsultas)
+– Forma alternativa de especificar consultas envolvendo 
+relacionamento entre tabelas
+●
+Otimização
+– Filtragens de prévias dos dados
+●
+Limita o número de atributos e tuplas a serem combinados em 
+caso de junções
+●
+Cláusulas
+– nome_atributo [NOT] IN (consulta SQL)
+– nome_atributo [ < | > | = | != | <> ] ANY (consulta SQL)
+– nome_atributo [ < | > | = | != | <> ] ALL (consulta SQL)
+
+--- PAGE 4 ---
+DML - In
+● In
+– Permite comparações elemento-conjunto
+● Testa se um valor pertence ou não a um conjunto
+– SELECT lista_atributos FROM tabela1 
+WHERE
+atributo [NOT] IN (conjunto | consulta SQL)
+
+--- PAGE 5 ---
+DML - In
+
+--- PAGE 6 ---
+Intersecção/Diferença
+  
+DML - Intersecção/Diferença
+Exemplo
+
+--- PAGE 7 ---
+DML - Any
+● Any
+– Permitem outras comparações elemento-conjunto
+● Testa se um valor é >, <, =, … que algum valor em um conjunto
+● SELECT lista_atributos FROM tabela1 
+WHERE
+atributo [<|>|=|!=|<>] ANY (conjunto|consulta SQL)
+
+--- PAGE 8 ---
+DML - Any
+
+--- PAGE 9 ---
+DML - All
+● ALL
+– Permitem outras comparações elemento-conjunto
+● Testa se um valor é >, <, =, … que TODOS os valores em um 
+conjunto
+● SELECT lista_atributos FROM tabela1
+WHERE
+atributo [<|>|=|!=|<>] ALL (conjunto | SQL)
+– Não possui um mapeamento para a Álgebra Relacional
+● Não é equivalente a operação de divisão
+
+--- PAGE 10 ---
+Exemplo 
+DML - All
+
+--- PAGE 11 ---
+DML - Subconsulta
+● Elemento
+– Permite comparações elemento-valor
+● Testa se um valor é igual ao valor retornado de uma consulta
+SELECT lista_atributos FROM tabela1
+WHERE
+atributo [>,<,<>,!=,=,>=,<=] (consulta SQL)
+● Pode ser usado como valor para uma coluna
+SELECT lista_atributos, (subconsulta)
+[FROM TABELA [WHERE condicao] ]
+
+--- PAGE 12 ---
+DML - Subconsulta
+
+--- PAGE 13 ---
+DML - Otimizações
+● Otimização
+– Podemos utilizar consultas aninhadas para realizar filtragens 
+prévias nos dados
+SELECT lista_atributos FROM (SUBCONSULTA)
+WHERE condicao
+– Ou mesmo para Junções
+SELECT 
+lista_atributos 
+FROM (SUBCONSULTA_A) a 
+JOIN (SUBCONSULTA_B) b ON 
+a.pk = b.pk
+[WHERE condicao]
+
+--- PAGE 14 ---
+Exercícios - IN
+● Resolva o que se pede utilizando subconsultas [NOT] IN
+1) Nome e CPF dos médicos que também são pacientes do hospital
+2) Código e nome dos pacientes com consulta marcada para horários 
+após às 14h
+3) Nome e idade dos médicos que possuem consulta com a paciente 
+Ana
+4) Número e andar dos ambulatórios onde nenhum médico dá 
+atendimento
+
+--- PAGE 15 ---
+Exercícios – ANY e/ou ALL
+● Resolva o que se pede utilizando subconsultas ANY e/ou ALL
+1) Números e andares de todos os ambulatórios, exceto o de menor 
+capacidade
+2) Nome e a idade do médico mais jovem (sem usar a função MIN!)
+3) Nome e CPF dos pacientes com consultas marcadas para horários 
+anteriores a todos os horários de consultas marcadas para o dia 
+14/10/2016
+4) Nome e CPF dos médicos que não atendem em ambulatórios com 
+capacidade superior à capacidade de todos os ambulatórios do 
+segundo andar
+
+--- PAGE 16 ---
+ENADE
+
+--- PAGE 17 ---
+ENADE

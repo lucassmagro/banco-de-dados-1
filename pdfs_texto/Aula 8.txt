@@ -1,0 +1,252 @@
+Arquivo: Aula 8.pdf
+
+--- PAGE 1 ---
+Divisão
+SQL
+
+--- PAGE 2 ---
+Roteiro
+● Histórico
+● Visão Geral
+● DDL
+● Exercícios
+
+--- PAGE 3 ---
+Divisão
+● Considera duas relações
+− dividendo (grau m+n)
+− divisor (grau n)
+● Grau “n”
+− Atributos do mesmo nome em ambas as relações
+● Quociente
+− grau “m”
+− Atributos da relação dividendo cujos valores associam-se 
+TODOS com os valores da relação divisor
+− Notação
+● Relação 1 ÷ Relação 2
+
+--- PAGE 4 ---
+● Exemplo
+R1 R2a             R 1 R2a  
+x    y     z z x    y
+1    1    1 1 1    1
+1    2    1 1    2               
+2    1    1 2    1   
+2    2    2
+3    1    3
+Divisão
+ ÷
+
+--- PAGE 5 ---
+● Exemplo
+R1         R 2b            R1 R 2b
+x    y     z y    z      x
+1    1    1 1   1      1    
+1    2    1                        2
+2    1    1
+2    2    2
+3    1    3
+ ÷
+Divisão
+
+--- PAGE 6 ---
+● Exemplo
+R1          R2c    
+x    y     z               y
+1    1    1      1
+1    2    1 2
+2    1    1
+R 1 R 2c
+2    2    2
+x   z
+3    1    3
+1  1
+Divisão
+ ÷
+
+--- PAGE 7 ---
+● Exemplo
+R1          R2c    
+x    y     z               y
+1    1    1      1
+1    2    1 2
+2    1    1
+R 1 R 2c
+2    2    2
+x   z
+3    1    3
+1  1
+Divisão
+ ÷
+
+--- PAGE 8 ---
+SQL
+
+--- PAGE 9 ---
+SQL
+● 1970- Foi publicado “A Relational Model of Data Large Shared 
+Banks” que define o modelo relacional
+● 1974 – Foi publicado o SEQUEL (Structured English Query 
+Language)
+● 1986 – SQL vira ISO
+– SQL-2 (92)
+– SQL-3 (99)
+
+--- PAGE 10 ---
+● Possui base pautada na álgebra relacional e no cálculo relacional 
+de tupla
+● Principais funcionalidades
+– DDL – definição de dados
+– DML – manipulação de dados
+– Restrições de integridade
+– Transações
+– Stored procedures
+Visão Geral
+
+--- PAGE 11 ---
+● SGBD disciplina
+– PostgreSQL
+– Interface
+● PGAdmin 3 ou 4
+● pSQL
+Visão Geral
+
+--- PAGE 12 ---
+PostgreSQL + PGAdmin 3
+
+--- PAGE 13 ---
+PostgreSQL + PGAdmin 3
+
+--- PAGE 14 ---
+PostgreSQL + PGAdmin 3
+
+--- PAGE 15 ---
+PostgreSQL + PGAdmin 3
+PostgreSQL + PGAdmin 3
+
+--- PAGE 16 ---
+PostgreSQL + PGAdmin 3
+
+--- PAGE 17 ---
+SQL
+Resultado
+PostgreSQL + PGAdmin 3
+
+--- PAGE 18 ---
+PostgreSQL + PGAdmin 4
+
+--- PAGE 19 ---
+PostgreSQL + PGAdmin 4
+
+--- PAGE 20 ---
+PostgreSQL + PGAdmin 4
+
+--- PAGE 21 ---
+psql
+
+--- PAGE 22 ---
+DDL
+● Criação de um BD
+– SQL não define essa operação
+– Alguns BDs (maioria dos comerciais) possuem o comando de 
+criação:
+● CREATE DATABASE nome_db
+– Remover um BD
+● DROP DATABASE nome_db
+
+--- PAGE 23 ---
+DDL
+● Comandos para definição do esquema
+– CREATE TABLE
+● Cria uma nova tabela, com suas definições estruturais e de 
+integridade
+– ALTER TABLE
+● Modifica as definições da tabela
+– Atributos chave não podem ser removidos
+– Atributos NOT NULL não podem ser inseridos
+– DROP TABLE
+● Remove uma tabela
+
+--- PAGE 24 ---
+DDL
+●
+CREATE TABLE
+– CREATE TABLE tabela (
+atributo_1 tipo_1,
+[atributo_n tipo_n,]
+[PRIMARY KEY (atributo_, [atributo_n])]
+[FOREIGN KEY (nome_atributo) REFERENCES nome_tabela]
+);
+– Principais tipos:
+●
+int, smallint, numeric(definição e tamanho), char , 
+varchar(definição de tamanho), date, datetime, etc
+●
+Date  ‘YYYY-MM-DD’→
+
+--- PAGE 25 ---
+DDL
+
+--- PAGE 26 ---
+DDL
+● CREATE TABLE
+– Exemplo
+● CREATE TABLE alunos (
+matricula NUMERIC(10),
+nome VARCHAR(120),
+genero SMALLINT,
+PRIMARY KEY (matricula)
+);
+
+--- PAGE 27 ---
+DDL
+● DROP TABLE
+– DROP TABLE nome_tabela;
+– Exemplo
+● DROP TABLE alunos;
+
+--- PAGE 28 ---
+DDL
+● ALTER TABLE
+– ALTER TABLE nome_tabela ADD COLUMN nome_atributo tipo [, OPP 
+nome_atributo_n tipo_n];
+– ALTER TABLE nome_tabela DROP COLUMN nome_atributo;
+– ALTER TABLE nome_tabela ALTER COLUMN nome_atributo tipo [, 
+OPP nome_atributo_n tipo_n];
+– ALTER TABLE nome_tabela [ADD | DROP] CONSTRAINT nome_ref 
+tipo_ref [ADD | DROP] [PRIMARY KEY … | FOREIGN KEY …]
+– ALTER TABLE nome_tabela RENAME COLUMN nome_atributo 
+novo_nome_atributo;
+
+--- PAGE 29 ---
+DDL
+● ALTER TABLE
+– Exemplo
+● ALTER TABLE Ambulatorios ADD nome VARCHAR(30)
+● ALTER TABLE Medicos DROP PRIMARY KEY
+● ALTER TABLE Pacientes DROP COLUMN doenca, DROP COLUMN 
+cidade
+● ALTER TABLE Funcionarios ADD FOREIGN KEY(nroa) REFERENCES 
+Ambulatorios
+
+--- PAGE 30 ---
+Exercícios
+1) Crie um BD com nome Clinica 
+2) Crie as seguintes tabelas neste BD, considerando que os atributos sublinhados 
+são chaves primárias e os em itálico são chaves estrangeiras:
+●
+Ambulatorios: nroa (int), andar (numeric(3)) (não nulo), capacidade (smallint)
+●
+Medicos: codm (int), nome (varchar(40) não nulo), idade (smallint não nulo),  
+especialidade (char(20)), CPF (numeric(11) único), cidade (varchar(30)), nroa (int não nulo)
+●
+Pacientes: codp (int), nome (varchar(40) não nulo), idade (smallint não nulo), city 
+(char(30)), CPF (numeric(11) único), doenca (varchar(40) não nulo) 
+●
+Funcionarios: codf (int), nome (varchar(40) não nulo), idade (smallint), CPF numeric(11) 
+único), cidade (varchar(30)), salario (numeric(10)), cargo (varchar(20))
+●
+Consultas: codm (int), codp (int), data (date), hora (time)
+3) Crie a coluna nroa(int) na tabela Funcionários
+4) Remover as colunas cargo e nroa da tabela de Funcionarios
+5) Renomeie a coluna ‘city’ da tabela pacientes para ‘cidade’

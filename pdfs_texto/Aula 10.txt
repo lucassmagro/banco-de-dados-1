@@ -1,0 +1,267 @@
+Arquivo: Aula 10.pdf
+
+--- PAGE 1 ---
+SQL
+Insert, Delete, Update, Select
+Operações de Busca, Junções
+Álvaro G. Pagliari
+alvaro.pagliari@unoesc.edu.br
+
+--- PAGE 2 ---
+Roteiro
+● DML
+– Insert
+– Update
+– Delete
+● Consultas em mais de uma tabela
+– Produto cartesiano
+– Junções
+
+--- PAGE 3 ---
+DML
+● Utilizada para a manipulação dos dados
+● Comandos
+– INSERT
+– UPDATE
+– SELECT
+– DELETE
+● São instruções declarativas
+– Manipulação de conjuntos
+– Baseia-se no que deve ser feito
+
+--- PAGE 4 ---
+DML
+● Inserção dos dados
+– INSERT INTO nome_tabela [(lista_atributos)] VALUES 
+(lista_valores | (SELECT …))
+– Exemplo
+● INSERT INTO Ambulatorios VALUES (1, 1, 30)
+● INSERT INTO Medicos (codm, nome, idade, especialidade, 
+CPF, cidade) VALUES (4, ‘Carlos’, 28, ‘ortopedia’, 
+‘11000110000’, ‘Joinvile’);
+
+--- PAGE 5 ---
+DML
+● Alteração de dados
+– UPDATE nome_tabela SET
+nome_atributo_1 = Valor_1 
+[, nome_atributo_n = Valor_n]
+[WHERE condicao]
+– Condição
+● Att (>, <, >=, <=, <>, =) [att | calculo | valor]
+● Condicao1 AND condicao2 OR condicao3
+
+--- PAGE 6 ---
+DML
+● Alteração de dados
+– UPDATE nome_tabela SET nome_atributo_1 = Valor_1 
+[nome_atributo_n = Valor_n]
+[WHERE condicao]
+– Exemplo
+● UPDATE Medicos SET cidade = ‘Florianopolis’
+● UPDATE Ambulatorios SET capaciade = capacidade + 5,
+andar = 3
+WHERE nroa = 2
+
+--- PAGE 7 ---
+DML
+● Exclusão de dados
+– DELETE FROM nome_tabela
+[WHERE condicao]
+– Exemplo
+● DELETE FROM Medicos WHERE cidade = ‘Florianopolis’
+
+--- PAGE 8 ---
+DML
+● Consulta de dados
+– SELECT lista_atributos FROM tabelas
+[WHERE condicao]
+● Mapeamento para Álgebra Relacional
+● SELECT * FROM Medicos
+
+--- PAGE 9 ---
+DML
+Consultas
+codm codp data hora
+1 1 2018/10/12 14:00
+1 4 2018/10/13 10:00
+2 1 2018/10/13 9:00
+2 2 2018/10/13 11:00
+2 3 2018/10/14 14:00
+2 4 2018/10/14 17:00
+3 1 2018/10/19 18:00
+3 3 2018/10/12 10:00
+3 4 2018/10/19 13:00
+4 4 2018/10/20 13:00
+4 4 2018/10/22 19:30
+Ambulatorios
+nroa andar capacidade
+1 1 30
+2 1 50
+3 2 40
+4 2 25
+5 2 55
+Medicos
+codm nome idade especialidade CPF cidade nroa
+1 Joao 40 ortopedia 10000100000 Florianopolis 1
+2 Maria 42 traumatologia 10000110000 Blumenau 2
+3 Pedro 51 pediatria 11000100000 São José 2
+4 Carlos 28 ortopedia 11000110000 Joinville
+5 Marcia 33 neurologia 11000111000 Biguacu 3
+  
+Funcionarios
+codf nome idade cidade salario CPF
+1 Rita 32 Sao Jose 1200 20000100000
+2 Maria 55 Palhoca 1220 30000110000
+3 Caio 45 Florianopolis 1100 41000100000
+4 Carlos 44 Florianopolis 1200 51000110000
+5 Paula 33 Florianopolis 2500 61000111000
+Pacientes
+codp nome idade cidade CPF doenca
+1 Ana 20 Florianopolis 20000200000 gripe
+2 Paulo 24 Palhoca 20000220000 fratura
+3 Lucia 30 Biguacu 22000200000 tendinite
+4 Carlos 28 Joinville 11000110000 sarampo
+
+--- PAGE 10 ---
+Roteiro
+● DML
+– Insert
+– Update
+– Delete
+● Consultas em mais de uma tabela
+– Produto cartesiano
+– Junções
+
+--- PAGE 11 ---
+DML – Produto Cartesiano
+● Consultas envolvendo mais de uma tabela
+– SELECT atributos FROM tabela1, …, tabelaN
+[WHERE condicao]
+– Em álgebra é expresso como um produto cartesiano
+
+--- PAGE 12 ---
+DML – Produto Cartesiano
+
+--- PAGE 13 ---
+DML – Produto Cartesiano
+
+--- PAGE 14 ---
+● DML
+– Insert
+– Update
+– Delete
+● Consultas em mais de uma tabela
+– Produto cartesiano
+– Junções
+Roteiro
+
+--- PAGE 15 ---
+● Junções
+– Combinação “inteligente” de tuplas de tabelas
+– SELECT lista_atributos 
+FROM tabela1 
+[INNER] JOIN tabela2 ON condicao_juncao 
+[JOIN tabela3 ON condicao_juncao]
+[WHERE condicao]
+  
+DML - Join
+
+--- PAGE 16 ---
+DML - Join
+
+--- PAGE 17 ---
+DML - Join
+
+--- PAGE 18 ---
+DML – Natural Join
+● Junções
+– Junção natural
+– SELECT lista_atributos
+FROM tabela1
+NATURAL JOIN tabela2
+[JOIN tabela3 ON condicao_juncao]
+[WHERE condicao]
+
+--- PAGE 19 ---
+DML – Natural Join
+
+--- PAGE 20 ---
+DML – Full, Left e Right Join
+● Junções
+– FULL, LEFT e RIGHT JOIN
+– SELECT lista_atributos
+FROM tabela1
+[FULL | RIGHT | LEFT] JOIN tabela3 ON condicao_juncao
+[ [FULL | RIGHT | LEFT] JOIN tabela3 ON condicao_juncao]
+[WHERE condicao]
+
+--- PAGE 21 ---
+● (LEFT | RIGHT) JOIN
+DML – Left e Right Join
+
+--- PAGE 22 ---
+● FULL JOIN
+DML – Full Join
+
+--- PAGE 23 ---
+● JOIN?
+DML
+
+--- PAGE 24 ---
+● JOIN?
+DML
+
+--- PAGE 25 ---
+● Junções
+– LEFT e RIGHT JOIN
+  
+DML – Full, Left e Right Join
+
+--- PAGE 26 ---
+Exercícios
+Responda o que se pede utilizando produto cartesiano
+1) Buscar o nome e CPF dos médicos que também são pacientes do hospital
+2) Buscar o nome e a especialidade dos médicos que atendem nos ambulatórios do 
+primeiro andar
+3) Buscar o nome e a idade dos médicos que têm consulta marcada com a paciente Ana
+4) Buscar o número dos ambulatórios que estão no mesmo andar do ambulatório 5
+Responda o que se pede utilizando junção (JOIN)
+5) Buscar o número e o andar dos ambulatórios utilizados por médicos ortopedistas
+6) Retornar pares (código, nome) de funcionários e de médicos que residem na mesma 
+cidade (tabela resultado deve ter 4 atributos)
+7) Buscar o código e nome dos médicos que possuem consultas marcadas para antes das 
+12 horas e possuem idade inferior à idade da médica Maria
+8) Buscar o nome e o salário dos funcionários que moram na mesma cidade do 
+funcionário Carlos e possuem salário superior ao dele
+
+--- PAGE 27 ---
+Exercícios
+Responda o que se pede utilizando Junção Natural
+1) Buscar o código e o nome dos pacientes com consulta marcada para horários após às 
+14 horas
+2) Buscar o número e o andar dos ambulatórios cujos médicos possuem consultas 
+marcadas para od ia 12/10/2018
+3) Buscar o nome, CPF e especialidade dos médicos que possuem consultas marcadas 
+com pacientes que estão com tendinite
+Responda o que se pede utilizando junção externa
+4) Buscar os dados de todos os ambulatórios e,para aqueles ambulatórios onde médicos 
+dão atendimento, exibir também os seus códigos e nomes
+5) Buscar o CPF e o nome de todos médicos e para aqueles médicos com consultas 
+marcadas, exibir os CPFS e nomes dos seus pacientes e as datas das consultas
+
+--- PAGE 28 ---
+●
+Realizar as seguintes atualizações no BD:
+1) O paciente Paulo mudou-se para Ilhota
+2) A consulta do médico 1 com o paciente 4 passou para às 12:00 
+horas do dia 4 de Novembro de 2018
+3) A paciente Ana fez aniversário e sua doença agora é câncer
+4) A consulta do médico Pedro (codm = 3) com o paciente Carlos 
+(codp = 4) passou para uma hora e meia depois
+5) O funcionário Carlos (codf = 4) deixou a clínica
+6) Consultas marcadas para às 19:00 horas foram canceladas
+7) Os pacientes com câncer ou idade inferior a 10 anos deixaram 
+a clínica
+8) Médicos que residem em Biguaçu e Palhoça deixaram a clínica 
+Exercícios
